@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # Expose port 4001 for the app to be accessible outside the Docker container
-EXPOSE 4001
+EXPOSE 12092
 
 # Define the command to run the app
 CMD [ "node", "index.js" ]

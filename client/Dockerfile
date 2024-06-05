@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:14
+FROM node:14 as build
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -16,14 +16,20 @@ COPY . .
 # Build the app
 RUN npm run build
 
-# Use a smaller base image to reduce the final image size
-FROM nginx:1.17-alpine
+# Start a new stage from scratch
+FROM node:14
 
-# Copy the build output to replace the default nginx contents.
-COPY --from=0 /app/build /usr/share/nginx/html
+# Set the working directory in the container to /app
+WORKDIR /app
 
-# Expose port 80 for the app to be accessible outside the Docker container
-EXPOSE 80
+# Install serve
+RUN npm install -g serve
 
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Copy the build folder from build stage into the new stage
+COPY --from=build /app/build .
+
+# Expose port 5000 for the app to be accessible outside the Docker container
+EXPOSE 12093
+
+# Start serve
+CMD ["serve", "-s", ".", "-l", "5000"]
