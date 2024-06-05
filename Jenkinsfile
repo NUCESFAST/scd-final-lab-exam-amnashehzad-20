@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker images') {
             steps {
                 // Build Docker images for each service
-                sh 'docker-compose build'
+                bat 'docker-compose build'
             }
         }
 
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 // Login to Docker Hub
                 withCredentials([usernamePassword(credentialsId: '4', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'docker login -u $USERNAME -p $PASSWORD'
+                    bat 'docker login -u %USERNAME% -p %PASSWORD%'
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
         stage('Push Docker images') {
             steps {
                 // Push Docker images to Docker Hub
-                sh 'docker-compose push'
+                bat 'docker-compose push'
             }
         }
     }
