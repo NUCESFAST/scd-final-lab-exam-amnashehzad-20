@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+//amna shhezad 21i-1209
     stages {
         stage('Checkout') {
             steps {
@@ -8,14 +8,14 @@ pipeline {
                 git 'https://github.com/NUCESFAST/scd-final-lab-exam-amnashehzad-20'
             }
         }
-
+//amna shhezad 21i-1209
         stage('Build Docker images') {
             steps {
                 // Build Docker images for each service
                 bat 'docker-compose build'
             }
         }
-
+//amna shhezad 21i-1209
         stage('Login to Docker Hub') {
             steps {
                 // Login to Docker Hub
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
         }
-
+//amna shhezad 21i-1209
         stage('Push Docker images') {
             steps {
                 // Push Docker images to Docker Hub

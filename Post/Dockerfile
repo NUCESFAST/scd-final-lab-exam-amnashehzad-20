@@ -16,8 +16,8 @@ RUN npm install
 # Bundle the app source inside the Docker image
 COPY . .
 
-# Expose port 4000 for the app to be accessible outside the Docker container
-EXPOSE 12095
+# Expose port 4002 for the app to be accessible outside the Docker container
+EXPOSE 4002
 
 # Define the command to run the app
 CMD [ "node", "index.js" ]
