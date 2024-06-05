@@ -1,0 +1,21 @@
+version: '3'
+services:
+  auth:
+    build: ./Auth
+    image: amnashehzad25678/exam:auth
+
+  classroom:
+    build: ./Classrooms
+    image: amnashehzad25678/exam:classroom
+  event-bus:
+    build: ./event-bus
+    image: amnashehzad25678/exam:event-bus
+
+  posts:
+    build: ./Post
+    image: amnashehzad25678/exam:posts
+  
+  client:
+    build: ./client
+    image: amnashehzad25678/exam:client
+    
